@@ -23,7 +23,7 @@ const Header = () => {
             <div className="bg-gradient-to-br from-flood-cyan to-flood-blue p-2 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-cyan-glow">
               <Droplet className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-white">FloodWatch</span>
+            <span className="text-xl font-bold text-white">FloodAura</span>
           </Link>
 
           {/* Navigation */}

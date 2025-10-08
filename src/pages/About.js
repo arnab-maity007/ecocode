@@ -10,7 +10,7 @@ const About = () => {
             <Info className="w-10 h-10 text-flood-cyan" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            About <span className="text-flood-cyan">FloodWatch</span>
+            About <span className="text-flood-cyan">FloodAura</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Leveraging AI and satellite technology for climate resilience
@@ -22,7 +22,7 @@ const About = () => {
           <div className="bg-flood-navy/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-white mb-6">Our Mission</h2>
             <p className="text-gray-300 leading-relaxed text-lg mb-4">
-              FloodWatch is dedicated to protecting urban communities from the devastating impacts of flooding through cutting-edge AI technology and real-time data analysis.
+              FloodAura is dedicated to protecting urban communities from the devastating impacts of flooding through cutting-edge AI technology and real-time data analysis.
             </p>
             <p className="text-gray-300 leading-relaxed text-lg">
               By combining satellite imagery, machine learning, and hyperlocal sensors, we provide unprecedented accuracy in flood prediction, giving communities the time they need to prepare and respond effectively.

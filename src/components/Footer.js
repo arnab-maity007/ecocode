@@ -13,7 +13,7 @@ const Footer = () => {
               <div className="bg-gradient-to-br from-flood-cyan to-flood-blue p-2 rounded-lg shadow-cyan-glow">
                 <Droplet className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">FloodWatch</span>
+              <span className="text-xl font-bold text-white">FloodAura</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               AI-powered hyperlocal flood forecasting for safer urban communities.
