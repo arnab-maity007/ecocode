@@ -90,7 +90,7 @@ This application requires several API keys to function fully. Follow these instr
 DATABASE_URL=postgresql://your_neondb_connection_string
 
 # API Keys
-OPENWEATHERMAP_API_KEY=0d155cf64ebcf8ba3a1efca8f23732e1
+OPENWEATHERMAP_API_KEY= yous_api_key
 GOOGLE_ELEVATION_API_KEY=your_google_elevation_api_key_here
 GEMINI_API_KEY=your_gemini_api_key_here
 
