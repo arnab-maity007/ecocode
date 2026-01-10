@@ -26,10 +26,22 @@ class FloodRiskService:
     """
     
     def __init__(self):
-        self.GoogleMap_api_key = "68e1583c818816fac3a7f297540898ad"
+        self.openweather_api_key = settings.OPENWEATHERMAP_API_KEY
         self.google_elevation_api_key = settings.GOOGLE_ELEVATION_API_KEY
         self.openweather_base_url = "https://api.openweathermap.org/data/2.5"
         self.google_elevation_base_url = "https://maps.googleapis.com/maps/api/elevation/json"
+    
+    @staticmethod
+    def calculate_severity(risk_score: float) -> str:
+        """Calculate severity from risk score."""
+        if risk_score <= 25:
+            return "Low"
+        elif risk_score <= 50:
+            return "Medium"
+        elif risk_score <= 75:
+            return "High"
+        else:
+            return "Critical"
     
     async def get_rainfall_data(self, latitude: float, longitude: float) -> float:
         """

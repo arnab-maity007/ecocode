@@ -119,7 +119,8 @@ const LiveMap = () => {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
+          // Set user location with lat/lng format for Google Maps
+          setUserLocation({ lat: latitude, lng: longitude });
           
           try {
             const data = await apiService.sendUserLocation(latitude, longitude);
@@ -142,15 +143,35 @@ const LiveMap = () => {
             }
           } catch (error) {
             console.error('Error sending location:', error);
-            alert('Location received but unable to fetch risk data');
+            // Still show the location even if API fails
+            alert(`Location found!\nLatitude: ${latitude.toFixed(4)}\nLongitude: ${longitude.toFixed(4)}\n\nUnable to fetch risk data - API may be offline.`);
           } finally {
             setIsLoading(false);
           }
         },
         (error) => {
           console.error('Geolocation error:', error);
-          alert('Unable to access your location. Please enable location services.');
+          let errorMessage = 'Unable to access your location.';
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = 'Location access denied. Please enable location permissions in your browser settings.';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = 'Location information unavailable.';
+              break;
+            case error.TIMEOUT:
+              errorMessage = 'Location request timed out.';
+              break;
+            default:
+              errorMessage = 'An unknown error occurred.';
+          }
+          alert(errorMessage);
           setIsLoading(false);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 60000
         }
       );
     } else {

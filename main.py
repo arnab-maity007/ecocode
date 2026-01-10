@@ -76,9 +76,19 @@ app = FastAPI(
 )
 
 # Configure CORS for frontend integration
+# Support both localhost for development and production URLs
+cors_origins = settings.cors_origins
+# Add common Netlify patterns
+if any("localhost" in o for o in cors_origins):
+    cors_origins.extend([
+        "https://*.netlify.app",
+        "https://floodauraaa.netlify.app",
+        "https://floodaura.netlify.app",
+    ])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,  # Frontend URLs
+    allow_origins=["*"],  # Allow all origins for now (update for production)
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers

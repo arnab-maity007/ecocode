@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigation, Car, Bike, Truck, AlertTriangle, Clock } from 'lucide-react';
+import apiService from '../services/api';
 
 const RouteVerdict = ({ onRouteAnalysis }) => {
   const [pointA, setPointA] = useState('');
@@ -25,23 +26,8 @@ const RouteVerdict = ({ onRouteAnalysis }) => {
     
     try {
       // Call backend API to analyze route using Gemini AI
-      const response = await fetch('http://localhost:8000/api/route-verdict', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          point_a: pointA,
-          point_b: pointB,
-          vehicle_type: vehicleType
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to analyze route');
-      }
-
-      const data = await response.json();
+      const data = await apiService.analyzeRoute(pointA, pointB, vehicleType);
+      
       setVerdict(data);
       setLastUpdate(new Date());
       

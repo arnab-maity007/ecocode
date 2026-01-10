@@ -3,7 +3,9 @@
  * Handles all API calls to the FastAPI backend
  */
 
+// Use environment variable or default to localhost for development
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api/v1';
+const API_ROOT = process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:8000';
 
 class ApiService {
   /**
@@ -221,11 +223,32 @@ class ApiService {
    */
   async healthCheck() {
     try {
-      const response = await fetch(`${API_BASE_URL.replace('/api/v1', '')}/health`);
+      const response = await fetch(`${API_ROOT}/health`);
       return response.ok;
     } catch (error) {
       return false;
     }
+  }
+
+  /**
+   * Analyze route using AI
+   */
+  async analyzeRoute(pointA, pointB, vehicleType) {
+    return this.fetchWithErrorHandling(`${API_ROOT}/api/route-verdict`, {
+      method: 'POST',
+      body: JSON.stringify({
+        point_a: pointA,
+        point_b: pointB,
+        vehicle_type: vehicleType
+      }),
+    });
+  }
+
+  /**
+   * Get rainfall prediction for a location
+   */
+  async getRainfallPrediction(latitude, longitude) {
+    return this.fetchWithErrorHandling(`${API_BASE_URL}/map/forecast/${latitude}/${longitude}?hours=24`);
   }
 }
 
