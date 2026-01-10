@@ -27,10 +27,10 @@ services:
       - key: ALGORITHM
         value: HS256
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
-        value: 30
+        value: "30"
       - key: APP_NAME
         value: Hyperlocal Urban Flood Forecaster
       - key: DEBUG
-        value: False
+        value: "False"
       - key: ALLOWED_ORIGINS
-        value: https://your-app.netlify.app,http://localhost:3000
+        value: https://floodauraaa.netlify.app,https://floodaura.netlify.app,http://localhost:3000
